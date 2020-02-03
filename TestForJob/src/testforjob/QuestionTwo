@@ -17,45 +17,75 @@ public class QuestionTwo {
      */
     public static void main(String[] args) {
         /* String to split. */
-        String stringToSplit = "UNA:+.? '\n" +
-"UNB+UNOC:3+2021000969+4441963198+180525:1225+3VAL2MJV6EH9IX+KMSV7HMD+CUSDECU-IE++1++1'\n" +
-"UNH+EDIFACT+CUSDEC:D:96B:UN:145050'\n" +
-"BGM+ZEM:::EX+09SEE7JPUV5HC06IC6+Z'\n" +
-"LOC+17+IT044100'\n" +
-"LOC+18+SOL'\n" +
-"LOC+35+SE'\n" +
-"LOC+36+TZ'\n" +
-"LOC+116+SE003033'\n" +
-"DTM+9:20090527:102'\n" +
-"DTM+268:20090626:102'\n" +
-"DTM+182:20090527:102'";
+        String stringToSplit = "<InputDocument>\n" +
+"<DeclarationList>\n" +
+"<Declaration Command=\"DEFAULT\" Version=\"5.13\">\n" +
+"<DeclarationHeader>\n" +
+"<Jurisdiction>IE</Jurisdiction>\n" +
+"<CWProcedure>IMPORT</CWProcedure>\n" +
+"<DeclarationDestination>CUSTOMSWAREIE</DeclarationDestination>\n" +
+"<DocumentRef>71Q0019681</DocumentRef>\n" +
+"<SiteID>DUB</SiteID>\n" +
+"<AccountCode>G0779837</AccountCode>\n" +
+"<Reference RefCode=\"MWB\">\n" +
+"<RefText>586133622</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"KEY\">\n" +
+"<RefText>DUB16049</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"CAR\">\n" +
+"<RefText>71Q0019681</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"COM\">\n" +
+"<RefText>71Q0019681</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"SRC\">\n" +
+"<RefText>ECUS</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"TRV\">\n" +
+"<RefText>1</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"CAS\">\n" +
+"<RefText>586133622</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"HWB\">\n" +
+"<RefText>586133622</RefText>\n" +
+"</Reference>\n" +
+"<Reference RefCode=\"UCR\">\n" +
+"<RefText>586133622</RefText>\n" +
+"</Reference>\n" +
+"<Country CodeType=\"NUM\" CountryType=\"Destination\">IE</Country>\n" +
+"<Country CodeType=\"NUM\" CountryType=\"Dispatch\">CN</Country>\n" +
+"\n" +
+"</DeclarationHeader>\n" +
+"</DeclarationList>\n" +
+"</InputDocument>";
+        
         String[] tempArray;
         String[] newTemp;
         ArrayList<String> answer = new ArrayList<>();
  
         /* delimiter */
-        String delimiter = "'";
-        String split = "\\+";
+        String delimiter = "Reference";
+        String split = "<RefText>";
+        
+        //Values to find
+        String findOne = "MWB";
+        String findTwo = "TRV";
+        String findThree = "CAR";
  
         /* given string will be split by the argument delimiter provided. */
         tempArray = stringToSplit.split(delimiter);
  
         /* print substrings */
         for (String tempArray1 : tempArray) {
-            if(tempArray1.contains("LOC")){
-                System.out.println(tempArray1);
-                newTemp = tempArray1.split(split);
+            System.out.print(tempArray1);
+            if(tempArray1.contains(findOne)||tempArray1.contains(findTwo)||tempArray1.contains(findThree)){
                 
-                for (String tempArray2:newTemp){
-                    if(!tempArray2.contains("LOC")){
-                        if(tempArray2.contains("'\n")){
-                            tempArray2 = tempArray2.substring(0, tempArray2.length()-3);
-                        }
-                        answer.add(tempArray2);
-                    }
-                }
             }
         }
+        
+        System.out.println ("Question 2");
         
         for (String read:answer){
             System.out.println(read);
