@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!-- Based on code from http://www.edankert.com/validate.html -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="contacts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="contact"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="contact">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="firstname" type="xs:NCName"/>
+        <xs:element name="lastname" type="xs:NCName"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
